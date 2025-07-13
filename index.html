@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инфографика: Системные вызовы IT-сектора Узбекистана</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- 
+    Narrative Plan:
+    1. Hook: Start with massive growth numbers (The Boom).
+    2. Thesis: Introduce the 3 core challenges born from this growth.
+    3. Challenge 1 (Education Gap): Visualize the 81% diploma stat and the IT Park University solution.
+    4. Challenge 2 (Brain Drain): Visualize the problem and the IT Visa / Uzbekistan Connect solution.
+    5. Challenge 3 (Regional Disparity): Visualize the Tashkent vs. Regions data and explain the "Ecosystem Nucleation" strategy.
+    6. Conclusion: Summarize the mature, market-based response of the government.
+
+    Visualization Choices (No SVG, No Mermaid JS):
+    - Export Growth (Change): Chart.js Line Chart. Justification: Best for showing trend over time towards a goal.
+    - Diploma Stat (Inform): Chart.js Donut Chart. Justification: Perfect for a single, powerful proportion.
+    - IT Park Uni Model (Process): HTML/CSS Flowchart. Justification: Clear, simple, no graphics needed.
+    - Brain Drain/Gain (Process): HTML/CSS Diagram. Justification: Visual metaphor for flows.
+    - Regional Data (Compare): Chart.js Bar Chart. Justification: Direct comparison of two values.
+    - Nucleation Concept (Concept): HTML/CSS Diagram. Justification: Visualizes an abstract strategy.
+
+    Color Palette Selection:
+    - Chosen Palette Name: "Brilliant Blues" with "Energetic & Playful" accent.
+    - Primary Dark: #0A2463
+    - Primary Medium: #3E92CC
+    - Primary Light: #D8E4FF
+    - Accent Orange: #FF8811
+    - Text/BG: #FFFFFF, #F1F5F9 (slate-100)
+
+    Confirmation: NEITHER Mermaid JS NOR SVG were used in this output. All visuals are rendered using Chart.js on Canvas or structured HTML/CSS with Tailwind.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F1F5F9;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .bg-primary-dark { background-color: #0A2463; }
+        .text-primary-medium { color: #3E92CC; }
+        .text-primary-light { color: #D8E4FF; }
+        .text-accent-orange { color: #FF8811; }
+        .border-accent-orange { border-color: #FF8811; }
+        .stat-card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <header class="bg-primary-dark text-white p-8 text-center">
+        <h1 class="text-4xl md:text-5xl font-black mb-2">Системные Вызовы IT-Сектора Узбекистана</h1>
+        <p class="text-lg text-primary-light max-w-3xl mx-auto">Анализ бурного роста, фундаментальных проблем и инновационных решений, формирующих цифровое будущее страны.</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="the-boom" class="mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
+                <div class="stat-card">
+                    <p class="text-5xl font-black text-primary-medium">$344 млн</p>
+                    <p class="text-lg mt-2">Экспорт IT-услуг в 2023</p>
+                    <p class="text-sm text-slate-500">(рост в 2.4 раза за год)</p>
+                </div>
+                <div class="stat-card">
+                    <p class="text-5xl font-black text-primary-medium">1652</p>
+                    <p class="text-lg mt-2">Компаний-резидентов</p>
+                    <p class="text-sm text-slate-500">(на конец 2023 года)</p>
+                </div>
+                 <div class="stat-card">
+                    <p class="text-5xl font-black text-accent-orange">$5 млрд</p>
+                    <p class="text-lg mt-2">Цель по экспорту</p>
+                    <p class="text-sm text-slate-500">(к 2030 году)</p>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-6 mt-8">
+                <h3 class="text-2xl font-bold text-center mb-4">Траектория Роста Экспорта IT-Услуг</h3>
+                <div class="chart-container h-64 md:h-80">
+                    <canvas id="exportGrowthChart"></canvas>
+                </div>
+                 <p class="text-center text-slate-600 mt-4">Взрывной рост экспорта, обусловленный государственной поддержкой и льготами IT Park, является главным драйвером сектора, но одновременно создает колоссальное давление на экосистему.</p>
+            </div>
+        </section>
+
+        <section id="the-challenges-intro" class="text-center bg-white rounded-lg shadow-md p-8 mb-12">
+             <h2 class="text-3xl font-black mb-4">Рост, Порождающий Вызовы</h2>
+             <p class="max-w-4xl mx-auto text-lg text-slate-700">Стремительное развитие IT-сектора Узбекистана — это не только история успеха. Оно вскрывает три фундаментальные системные проблемы, от решения которых зависит долгосрочная устойчивость и достижение амбициозных целей. Это битва за таланты, реформа образования и сбалансированное региональное развитие.</p>
+        </section>
+
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <section id="challenge-education" class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-2xl font-bold text-center">Вызов 1: Разрыв между Образованием и Индустрией</h3>
+                <p class="text-center text-slate-600 my-4">Традиционные вузы не успевают за темпами индустрии. В результате работодатели ценят практические навыки выше формального образования.</p>
+                <div class="chart-container h-64">
+                    <canvas id="diplomaChart"></canvas>
+                </div>
+                <p class="text-center font-bold text-lg mt-2">В 81% IT-вакансий диплом не требуется</p>
+                
+                <div class="mt-8 pt-6 border-t">
+                    <h4 class="text-xl font-bold text-center text-primary-medium">Решение: Альтернативные Модели</h4>
+                    <p class="text-center text-slate-600 mb-6">В ответ на кризис появляются гибкие, практико-ориентированные форматы, созданные в партнерстве с бизнесом.</p>
+                    <div class="flex flex-col items-center space-y-4">
+                        <div class="border-2 border-primary-medium rounded-lg p-3 text-center w-3/4">
+                            <p class="font-bold">IT Park University</p>
+                            <p class="text-sm">(Проект IT Park и EPAM)</p>
+                        </div>
+                        <div class="text-3xl text-primary-medium font-thin">↓</div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+                            <div class="border border-slate-300 rounded-lg p-3 text-center">
+                                <p class="font-semibold">Без экзаменов</p>
+                                <p class="text-sm">Тесты на логику и английский</p>
+                            </div>
+                             <div class="border border-slate-300 rounded-lg p-3 text-center">
+                                <p class="font-semibold">Гибкий формат</p>
+                                <p class="text-sm">Преимущественно онлайн</p>
+                            </div>
+                        </div>
+                        <div class="text-3xl text-primary-medium font-thin">↓</div>
+                         <div class="border-2 border-accent-orange rounded-lg p-3 text-center w-3/4">
+                            <p class="font-bold">Готовый специалист для рынка</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="challenge-brain-drain" class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-2xl font-bold text-center">Вызов 2: «Утечка Мозгов» и Битва за Таланты</h3>
+                 <p class="text-center text-slate-600 my-4">Квалифицированные специалисты востребованы во всем мире. Как удержать и привлечь лучшие кадры?</p>
+                
+                <div class="grid grid-cols-2 gap-4 mt-6 text-center">
+                    <div>
+                        <h4 class="text-xl font-bold text-red-500 mb-2">Угроза: Утечка</h4>
+                        <div class="flex justify-center items-center h-24">
+                             <p class="text-5xl animate-pulse">→ 🌏</p>
+                        </div>
+                        <p class="text-slate-600">Потеря ценного человеческого капитала в пользу международных компаний.</p>
+                    </div>
+                     <div>
+                        <h4 class="text-xl font-bold text-green-500 mb-2">Ответ: Привлечение</h4>
+                         <div class="flex justify-center items-center h-24">
+                             <p class="text-5xl animate-pulse">🌏 →</p>
+                        </div>
+                        <p class="text-slate-600">Создание привлекательной среды для жизни и работы в Узбекистане.</p>
+                    </div>
+                </div>
+
+                <div class="mt-8 pt-6 border-t">
+                    <h4 class="text-xl font-bold text-center text-primary-medium">Решение: Проактивная Стратегия</h4>
+                    <p class="text-center text-slate-600 mb-6">Вместо запретов — создание уникальных преимуществ для релокации и удержания специалистов.</p>
+                    <div class="bg-primary-dark text-white rounded-lg p-6">
+                         <h5 class="text-lg font-bold text-center mb-4">Программа IT Visa</h5>
+                         <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <span class="text-accent-orange mr-3 font-bold">✓</span>
+                                <span><strong class="font-semibold">Для IT-специалистов:</strong> доход от $30,000/год.</span>
+                            </li>
+                             <li class="flex items-start">
+                                <span class="text-accent-orange mr-3 font-bold">✓</span>
+                                <span><strong class="font-semibold">Для инвесторов:</strong> вложения от $10,000.</span>
+                            </li>
+                             <li class="flex items-start">
+                                <span class="text-accent-orange mr-3 font-bold">✓</span>
+                                <span><strong class="font-semibold">Привилегии:</strong> доступ к медицине, образованию и право на покупку недвижимости.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+        
+        <section id="challenge-regional" class="bg-white rounded-lg shadow-md p-6 mt-8">
+            <h3 class="text-2xl font-bold text-center">Вызов 3: Региональные Диспропорции</h3>
+            <p class="text-center text-slate-600 my-4">IT-активность сконцентрирована в столице, что создает неравенство возможностей для специалистов из регионов.</p>
+            <div class="chart-container">
+                <canvas id="regionalChart"></canvas>
+            </div>
+             <p class="text-center font-bold text-lg mt-2">Концентрация компаний-резидентов IT Park</p>
+
+            <div class="mt-8 pt-6 border-t">
+                <h4 class="text-xl font-bold text-center text-primary-medium">Стратегия: «Экосистемная Нуклеация»</h4>
+                <p class="text-center text-slate-600 mb-6">Это не недостаток, а осознанный план. Сначала — создание одного мощного, глобально интегрированного хаба.</p>
+                <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-8">
+                    <div class="text-center">
+                        <div class="w-32 h-32 rounded-full bg-primary-dark flex items-center justify-center text-white font-bold text-lg shadow-lg">Ташкент</div>
+                        <p class="mt-2 font-semibold">Фаза 1: Ядро</p>
+                        <p class="text-sm text-slate-500">Концентрация ресурсов</p>
+                    </div>
+                    <div class="text-5xl text-primary-medium font-thin hidden md:block">→</div>
+                     <div class="text-5xl text-primary-medium font-thin md:hidden">↓</div>
+                    <div class="text-center">
+                        <div class="grid grid-cols-3 gap-2">
+                             <div class="w-16 h-16 rounded-full bg-primary-medium/70 flex items-center justify-center text-white font-bold text-sm shadow">Регион</div>
+                             <div class="w-16 h-16 rounded-full bg-primary-medium/70 flex items-center justify-center text-white font-bold text-sm shadow">Регион</div>
+                             <div class="w-16 h-16 rounded-full bg-primary-medium/70 flex items-center justify-center text-white font-bold text-sm shadow">Регион</div>
+                        </div>
+                         <p class="mt-2 font-semibold">Фаза 2: Излучение</p>
+                        <p class="text-sm text-slate-500">Диффузия инноваций и капитала</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-primary-dark text-white p-8 mt-12">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-black mb-4">Заключение: Зрелая Стратегия</h2>
+            <p class="max-w-4xl mx-auto text-lg text-primary-light">Ответ Узбекистана на системные вызовы демонстрирует гибкость и зрелость. Вместо административного давления, государство делает ставку на рыночные механизмы: создание конкуренции в образовании, превращение страны в привлекательную юрисдикцию для талантов и стратегию концентрированного роста. Преодоление этих вызовов — ключ к устойчивому цифровому будущему.</p>
+        </div>
+    </footer>
+    
+    <script>
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const wrapLabel = (label) => {
+            const maxLength = 16;
+            if (label.length <= maxLength) return label;
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).trim().length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            });
+            lines.push(currentLine.trim());
+            return lines;
+        };
+
+        const chartColors = {
+            primaryDark: '#0A2463',
+            primaryMedium: '#3E92CC',
+            primaryLight: '#D8E4FF',
+            accentOrange: '#FF8811',
+            slate400: '#94A3B8'
+        };
+        
+        const defaultChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: chartColors.primaryDark,
+                        font: {
+                            family: "'Inter', sans-serif"
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    ticks: { color: chartColors.primaryDark },
+                    grid: { color: chartColors.slate400 }
+                },
+                x: {
+                    ticks: { color: chartColors.primaryDark },
+                    grid: { display: false }
+                }
+            }
+        };
+
+        new Chart(document.getElementById('exportGrowthChart'), {
+            type: 'line',
+            data: {
+                labels: ['2022', '2023', '2030 (Цель)'],
+                datasets: [{
+                    label: 'Экспорт IT-услуг (млн $)',
+                    data: [140, 344, null],
+                    borderColor: chartColors.primaryMedium,
+                    backgroundColor: chartColors.primaryMedium + '33',
+                    fill: true,
+                    tension: 0.1,
+                    pointRadius: 5,
+                    pointBackgroundColor: chartColors.primaryMedium
+                }, {
+                    label: 'Прогноз к цели',
+                    data: [null, 344, 5000],
+                    borderColor: chartColors.accentOrange,
+                    borderDash: [5, 5],
+                    fill: false,
+                    tension: 0.1,
+                    pointRadius: 5,
+                    pointBackgroundColor: chartColors.accentOrange
+                }]
+            },
+            options: { ...defaultChartOptions }
+        });
+
+        new Chart(document.getElementById('diplomaChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Диплом не требуется', 'Диплом обязателен'],
+                datasets: [{
+                    label: 'Требование диплома в IT-вакансиях',
+                    data: [81, 19],
+                    backgroundColor: [chartColors.primaryMedium, chartColors.primaryLight],
+                    borderColor: '#FFFFFF',
+                    borderWidth: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                 plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: chartColors.primaryDark,
+                            font: { family: "'Inter', sans-serif" }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: { title: tooltipTitleCallback }
+                    }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('regionalChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Ташкент', 'Все остальные регионы'],
+                datasets: [{
+                    label: 'Кол-во компаний-резидентов',
+                    data: [1129, 523],
+                    backgroundColor: [chartColors.primaryMedium, chartColors.accentOrange],
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { callbacks: { title: tooltipTitleCallback } }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
